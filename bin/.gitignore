@@ -1,5 +1,6 @@
-/moria5/
-/MoriaMain.class
-/Render.class
 /render/
-/MoriaMain$TimerListener.class
+/MoriaMain$MainLoop.class
+/MoriaMain$1.class
+/graphics/
+/model/
+/MapLoader.class
