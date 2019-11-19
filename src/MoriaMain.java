@@ -7,15 +7,16 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import render.FrameRenderer;
+import render.Map;
 
 public class MoriaMain  {
 	
-	private static final int PIXEL_SIZE = 8;
+	private static final int PIXEL_SIZE = 20;
 	
 	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     
-    static int xMax = (int) Math.floor(screenSize.width / PIXEL_SIZE);
-    static int yMax = (int) Math.floor(screenSize.height / PIXEL_SIZE);
+	static int xMax = screenSize.width;
+	static int yMax = screenSize.height;
     
     static FrameRenderer renderer;
 	
@@ -30,26 +31,25 @@ public class MoriaMain  {
 		JFrame frame = new JFrame("Moria 4");
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setUndecorated(true);
-	    frame.setSize(xMax * PIXEL_SIZE, yMax * PIXEL_SIZE);
+	    frame.setSize(xMax, yMax);
 	    
 	    renderer = new FrameRenderer(xMax, yMax, PIXEL_SIZE);
 	    renderer.setDoubleBuffered(true);
 	    frame.getContentPane().add(renderer);
 	    
-	    int middleX = xMax / 2;
-        int middleY = yMax / 2;
+	    // TODO: Move and refactor
+	    Map testMap = MapLoader.loadMap("src/graphics/testG.png", "src/graphics/testM.png");
 	    
-        // Acorn
-        renderer.map[middleY][middleX-4] = true;
-        renderer.map[middleY][middleX-3] = true;
-        renderer.map[middleY-2][middleX-3] = true;
-        renderer.map[middleY-1][middleX-1] = true;
-        renderer.map[middleY][middleX] = true;
-        renderer.map[middleY][middleX+1] = true;
-        renderer.map[middleY][middleX+2] = true;
-        
+	    if (testMap != null) {
+	    	renderer.currentMap = testMap;
+	    } else {
+	    	System.out.println("Baga. Map loading failed");
+	    	// TODO: Implement error screen
+	    	return;
+	    }
+	    
         new Timer(100, mainLoop).start();
-	    
+        
 	    frame.setVisible(true);
 	}
 }

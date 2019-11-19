@@ -4,11 +4,11 @@ import java.awt.Color;
 
 public class Pixel {
 	private Color color;
-	private boolean isStatic;
+	private int pixelState;
 	
-	public Pixel(Color c, boolean isStatic) {
+	public Pixel(Color c, int pixelState) {
 		this.color = c;
-		this.isStatic = isStatic;
+		this.pixelState = pixelState;
 	}
 
 	public Color getColor() {
@@ -19,11 +19,11 @@ public class Pixel {
 		this.color = color;
 	}
 
-	public boolean isStatic() {
-		return isStatic;
+	public int getPixelState() {
+		return pixelState;
 	}
 
-	public void setStatic(boolean isStatic) {
-		this.isStatic = isStatic;
+	public void setPixelState(int pixelState) {
+		this.pixelState = pixelState;
 	}
 }
