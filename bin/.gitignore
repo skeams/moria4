@@ -1,6 +1,5 @@
-/render/
-/MoriaMain$MainLoop.class
-/MoriaMain$1.class
-/graphics/
 /model/
-/MapLoader.class
+/graphics/
+/Loader.class
+/render/
+/core/

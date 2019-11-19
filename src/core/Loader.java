@@ -1,3 +1,5 @@
+package core;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -8,7 +10,7 @@ import javax.imageio.ImageIO;
 import render.Map;
 import render.Pixel;
 
-public class MapLoader {
+public class Loader {
 	
 	/**
 	 * Returns false if size of A and B differ.
@@ -38,6 +40,20 @@ public class MapLoader {
 	}
 	
 	/**
+	 * Returns image or null if loading failed.
+	 * 
+	 * @param imagePath
+	 * @return
+	 */
+	public static BufferedImage loadImage(String imagePath) {
+		try {
+			return ImageIO.read(new File(imagePath));
+		} catch (IOException e) {
+			return null;
+		}
+	}
+	
+	/**
 	 * Returns Map object or null if the map-loading failed.
 	 * 
 	 * @param graphicsFilePath
@@ -45,13 +61,10 @@ public class MapLoader {
 	 * @return
 	 */
 	public static Map loadMap(String graphicsFilePath, String maskFilePath) {
-		BufferedImage graphicsImage = null;
-		BufferedImage maskImage = null;
+		BufferedImage graphicsImage = loadImage(graphicsFilePath);
+		BufferedImage maskImage = loadImage(maskFilePath);
 		
-		try {
-			graphicsImage = ImageIO.read(new File(graphicsFilePath));
-			maskImage = ImageIO.read(new File(maskFilePath));
-			
+		if (graphicsImage != null && maskImage != null) {
 			if (!sizeMatch(graphicsImage, maskImage)) {
 				return null;
 			}
@@ -67,8 +80,6 @@ public class MapLoader {
 			}
 			
 			return map;
-		} catch (IOException e) {
-			// Failed.
 		}
 		
 		return null;
