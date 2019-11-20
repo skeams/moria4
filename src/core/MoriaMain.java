@@ -86,7 +86,7 @@ public class MoriaMain  {
 	    frame.getContentPane().add(mainFrame);
 	    
 	    // TODO: Move and refactor
-	    Map testMap = Loader.loadMap("src/graphics/testG.png", "src/graphics/testM.png");
+	    Map testMap = Loader.loadMap("src/graphics/outskirtsG.png", "src/graphics/outskirtsM.png");
 	    
 	    if (testMap != null) {
 	    	mainFrame.currentMap = testMap;

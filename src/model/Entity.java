@@ -16,7 +16,7 @@ public abstract class Entity {
 	private int spriteIndex;
 	private boolean moving;
 	
-	public abstract boolean collision(int x, int y);
+	public abstract boolean mapCollision(int x, int y);
 	public abstract void updateSpriteIndex();
 	
 	/**

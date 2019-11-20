@@ -7,7 +7,7 @@ public class Bat extends Entity {
 	}
 
 	@Override
-	public boolean collision(int x, int y) {
+	public boolean mapCollision(int x, int y) {
 		// TODO Auto-generated method stub
 		// TODO Implement
 		// TODO Implement

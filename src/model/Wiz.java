@@ -11,18 +11,20 @@ public class Wiz extends Entity {
 	private List<BufferedImage> sprites;
 	
 	public Wiz(int xPos, int yPos) {
-		super(100, 9, 4, 8, xPos, yPos, 1, 0);
+		super(100, 10, 4, 8, xPos, yPos, 0, 0);
 		
 		sprites = new ArrayList<BufferedImage>();
 		sprites.add(Loader.loadImage("src/graphics/wizL.png"));
 		sprites.add(Loader.loadImage("src/graphics/wizU.png"));
 		sprites.add(Loader.loadImage("src/graphics/wizR.png"));
 		sprites.add(Loader.loadImage("src/graphics/wizD.png"));
+		
+		setSpriteIndex(2);
 	}
 
 	@Override
-	public boolean collision(int x, int y) {
-		return x >= getxPos() + 1 && x < getxPos() + 3 && y >= getyPos() + 1 && y < getyPos() + 8;
+	public boolean mapCollision(int x, int y) {
+		return x >= getxPos() + 1 && x < getxPos() + 3 && y >= getyPos() + 6 && y < getyPos() + 8;
 	}
 	
 	/**

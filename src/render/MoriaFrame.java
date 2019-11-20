@@ -125,9 +125,9 @@ public class MoriaFrame extends JPanel {
 	private boolean entityCanMove(Entity entity) {
 		return !currentMap.boundsCollide(
 			entity.getxPos() + entity.getxDirection(),
-			entity.getyPos() + entity.getyDirection(),
+			entity.getyPos() + 6 + entity.getyDirection(),
 			entity.getWidth(),
-			entity.getHeight()
+			2
 		);
 	}
 	
