@@ -19,6 +19,14 @@ public class Pixel {
 		this.color = color;
 	}
 
+	/**
+	 * <ul>
+	 *   <li>0 = Nothing / Walkable
+	 *   <li>1 = Solid / Blocking
+	 *   <li>2 = Foreground Pixel
+	 *   <li>3 = ?? Dynamic Pixels Blocking ??
+	 * </ul>
+	 */
 	public int getPixelState() {
 		return pixelState;
 	}

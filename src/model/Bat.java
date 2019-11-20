@@ -3,7 +3,7 @@ package model;
 public class Bat extends Entity {
 
 	public Bat(int xPos, int yPos) {
-		super(20, 8, xPos, yPos, 0, 0);
+		super(20, 8, 4, 2, xPos, yPos, 0, 0);
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package render;
 
 import javax.swing.JPanel;
 
+import model.Entity;
 import model.Wiz;
 
 import java.awt.Color;
@@ -9,6 +10,8 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MoriaFrame extends JPanel {
 	
@@ -25,6 +28,7 @@ public class MoriaFrame extends JPanel {
 	
 	public Map currentMap;
 	public Wiz wiz;
+	public List<Entity> entities;
 	
 	public MoriaFrame(int xMax, int yMax, int PIXEL_SIZE) {
 		this.xMax = xMax;
@@ -32,6 +36,8 @@ public class MoriaFrame extends JPanel {
 		this.xMapOffset = 0;
 		this.yMapOffset = 0;
 		this.PIXEL_SIZE = PIXEL_SIZE;
+		
+		entities = new ArrayList<>();
 		
 		setFocusable(true);
 		requestFocus();
@@ -84,7 +90,7 @@ public class MoriaFrame extends JPanel {
 		});
 	}
 	
-	public void updateMapOffset() {
+	private void updateMapOffset() {
 		if (wiz.getxPos() + 4 - xMapOffset > (int) Math.floor(xMax / PIXEL_SIZE) - edgePadding) {
 			if (xMapOffset < currentMap.getWidth() - (int) Math.floor(xMax / PIXEL_SIZE)) {
 				xMapOffset++;
@@ -110,8 +116,41 @@ public class MoriaFrame extends JPanel {
 		}
 	}
 	
+	/**
+	 * Returns true if updating the entity position will not result in map collision
+	 * 
+	 * @param entity
+	 * @return
+	 */
+	private boolean entityCanMove(Entity entity) {
+		return !currentMap.boundsCollide(
+			entity.getxPos() + entity.getxDirection(),
+			entity.getyPos() + entity.getyDirection(),
+			entity.getWidth(),
+			entity.getHeight()
+		);
+	}
+	
+	/**___________________________________________________
+	 * 
+	 * 
+	 * 
+	 * Updates the world state and all actions / movements
+	 * 
+	 * 
+	 * ___________________________________________________
+	 */
 	public void updateState() {
-		wiz.updatePosition();
+		if (entityCanMove(wiz)) {
+			wiz.updatePosition();
+		}
+		
+		for (Entity entity : entities) {
+			if (entityCanMove(entity)) {
+				entity.updatePosition();
+			}
+		}
+		
 		updateMapOffset();
 	}
 	

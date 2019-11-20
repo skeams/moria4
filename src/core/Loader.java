@@ -32,7 +32,7 @@ public class Loader {
 	 */
 	private static int getPixelState(int rgb) {
 		switch (rgb) {
-			case 0:
+			case -16777216:
 				return 1;
 			default:
 				return 0;

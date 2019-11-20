@@ -4,10 +4,15 @@ public abstract class Entity {
 	private int hp;
 	private int speed; // Max = 10	TODO: Make constants place
 	private int speedDelayCount;
+	
+	private int width;
+	private int height;
+
 	private int xPos;
 	private int yPos;
 	private int xDirection;
 	private int yDirection;
+	
 	private int spriteIndex;
 	private boolean moving;
 	
@@ -21,16 +26,34 @@ public abstract class Entity {
 	 * @param xPos
 	 * @param yPos
 	 */
-	public Entity(int hp, int speed, int xPos, int yPos, int xDirection, int yDirection) {
+	public Entity(int hp, int speed, int width, int height, int xPos, int yPos, int xDirection, int yDirection) {
 		this.hp = hp;
 		this.speed = speed;
+		this.speedDelayCount = speed;
+		
+		this.width = width;
+		this.height = height;
+		
 		this.xPos = xPos;
 		this.yPos = yPos;
-		this.speedDelayCount = speed;
 		this.xDirection = xDirection;
 		this.yDirection = yDirection;
+		
 		this.moving = false;
 		this.spriteIndex = 0;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	public void setWidth(int width) {
+		this.width = width;
+	}
+	public int getHeight() {
+		return height;
+	}
+	public void setHeight(int height) {
+		this.height = height;
 	}
 	
 	public int getxDirection() {

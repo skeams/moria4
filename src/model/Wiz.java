@@ -11,7 +11,7 @@ public class Wiz extends Entity {
 	private List<BufferedImage> sprites;
 	
 	public Wiz(int xPos, int yPos) {
-		super(100, 9, xPos, yPos, 1, 0);
+		super(100, 9, 4, 8, xPos, yPos, 1, 0);
 		
 		sprites = new ArrayList<BufferedImage>();
 		sprites.add(Loader.loadImage("src/graphics/wizL.png"));
@@ -22,12 +22,7 @@ public class Wiz extends Entity {
 
 	@Override
 	public boolean collision(int x, int y) {
-		// TODO Auto-generated method stub
-		// TODO Implement
-		// TODO Implement
-		// TODO Implement
-		// TODO Implement
-		return false;
+		return x >= getxPos() + 1 && x < getxPos() + 3 && y >= getyPos() + 1 && y < getyPos() + 8;
 	}
 	
 	/**
@@ -39,6 +34,12 @@ public class Wiz extends Entity {
 		return sprites.get(getSpriteIndex());
 	}
 
+	/**
+	 * Updates sprite index based on x/y direction speed.
+	 * 
+	 * Needed to keep separate holder for sprite, as movement is
+	 * more dynamic and changes more often than the sprite itself.
+	 */
 	@Override
 	public void updateSpriteIndex() {
 		if (getxDirection() == -1) {
